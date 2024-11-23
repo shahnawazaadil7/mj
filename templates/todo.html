@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="max-width: 800px; margin: 0 auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h1 style="font-size: 2rem; color: #007bff; margin-bottom: 20px;">To-Do List</h1>
+    
+    <!-- Add Task Form -->
+    <form method="POST" action="{{ url_for('todo') }}" style="margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);">
+        <input type="text" name="task" placeholder="Add a new task..." required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;">
+        <button type="submit" style="width: 100%; padding: 10px; background: #007bff; color: #fff; border: none; font-weight: bold; cursor: pointer; border-radius: 4px;">Add Task</button>
+    </form>
+    
+    <!-- To-Do List -->
+    <ul style="list-style: none; padding: 0; margin-top: 20px;">
+        {% for idx, todo in enumerate(todos) %}
+        <li style="padding: 10px; border: 1px solid #ddd; margin-bottom: 5px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; background: #f9f9f9;">
+            <!-- Radio Button -->
+            <input type="radio" name="task_{{ idx }}" id="task_{{ idx }}" {% if todo.completed %} checked {% endif %} 
+                   onclick="document.getElementById('toggle-{{ idx }}').submit();" 
+                   style="width: 20px; height: 20px; cursor: pointer; margin-right: 10px; accent-color: #007bff;">
+            
+            <!-- Task Text -->
+            <span class="{{ 'text-decoration-line-through' if todo.completed else '' }}" style="flex-grow: 1; font-size: 14px; color: #333;">{{ todo.task }}</span>
+            
+            <!-- Actions -->
+            <div class="actions" style="display: flex; align-items: center;">
+                <form id="toggle-{{ idx }}" method="POST" action="{{ url_for('update_todo') }}" style="display: inline;">
+                    <input type="hidden" name="task_index" value="{{ idx }}">
+                </form>
+                <form method="POST" action="{{ url_for('delete_todo') }}" style="display: inline; margin-left: 10px;">
+                    <input type="hidden" name="task_index" value="{{ idx }}">
+                    <button class="btn btn-delete" style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Delete</button>
+                </form>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('dashboard') }}" style="display: inline-block; margin-top: 20px; text-decoration: none; color: #007bff;">Back to Dashboard</a>
+</div>
+{% endblock %}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Interface</title>
+    <style>
+        /* Clean and Modern Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #chat-box {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .chat-message {
+            margin: 5px 0;
+        }
+
+        .chat-message.user {
+            text-align: right;
+            color: blue;
+        }
+
+        .chat-message.bot {
+            text-align: left;
+            color: green;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chatbot</h1>
+        <div id="chat-box"></div>
+        <input type="text" id="question" placeholder="Type your question here">
+        <button onclick="askQuestion()">Ask</button>
+    </div>
+
+    <script>
+        // Inline JavaScript for handling chat functionality
+        function askQuestion() {
+            const question = document.getElementById("question").value.trim();
+            if (!question) {
+                alert("Please enter a question.");
+                return;
+            }
+
+            fetch("/ask_question", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `question=${encodeURIComponent(question)}`,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const chatBox = document.getElementById("chat-box");
+                    chatBox.innerHTML += `<div class="chat-message user">${question}</div>`;
+                    chatBox.innerHTML += `<div class="chat-message bot">${data.answer || "No response available."}</div>`;
+                    chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to bottom
+                })
+                .catch(err => console.error("Error:", err));
+        }
+    </script>
+</body>
+</html>

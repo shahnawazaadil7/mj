@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Your Dashboard</h1>
+<p>Followers: {{ analytics['followers'] }}</p>
+<p>Engagement Rate: {{ analytics['engagement_rate'] }}%</p>
+<h3>Recent Posts</h3>
+<ul>
+    {% for post in analytics['recent_posts'] %}
+    <li>{{ post }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

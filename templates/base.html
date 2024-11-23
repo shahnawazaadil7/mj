@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Learning Hub</title>
+    <!-- Include styles only if the block is defined -->
+    {% block styles %}
+    <link rel="stylesheet" href="/static/css/styles.css">
+    {% endblock %}
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/tutorials">Tutorials</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/recommender">Recommender</a>
+        <a href="/todo">Todo List</a>
+        <a href="/chatbot">ChatBot</a>
+        <a href="/team">Team</a>
+        <a href="/logout">Logout</a>
+    </nav>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
