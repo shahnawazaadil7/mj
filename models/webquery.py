@@ -9,7 +9,7 @@ from langchain.docstore.document import Document
 class WebQuery:
     def __init__(self, openai_api_key = None) -> None:
         self.embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
-        os.environ["OPENAI_API_KEY"] = "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"
+        os.environ["OPENAI_API_KEY"] = 
         self.text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
         self.llm = OpenAI(temperature=0, openai_api_key=openai_api_key)
         self.chain = None
