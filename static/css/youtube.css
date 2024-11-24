@@ -1,0 +1,106 @@
+/* styles.css */
+
+/* General Styling */
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+} */
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* Page Layout */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 10px;
+}
+
+.platform-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.platform-button:hover {
+    background-color: #0056b3;
+}
+
+/* Content Sections */
+.content {
+    display: none; /* Hide all sections by default */
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.content-title {
+    font-size: 1.6rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.tips {
+    margin: 10px 0;
+}
+
+.tip-link {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.tip-link:hover {
+    text-decoration: underline;
+}
+
+/* Video Section */
+.video-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+iframe {
+    width: 100%;
+    max-width: 560px;
+    height: 315px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.note {
+    margin-top: 15px;
+    font-style: italic;
+    color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .button-container {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .platform-button {
+        width: 100%;
+        text-align: center;
+    }
+}

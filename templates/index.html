@@ -2,23 +2,30 @@
 
 {% block content %}
 <!-- Hero Section (Carousel) -->
-<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" style="margin-bottom: 50px;">
+<div id="heroCarousel" class="carousel slide sm-learning-carousel" data-bs-ride="carousel">
     <div class="carousel-inner">
         <!-- Single Carousel Item -->
         <div class="carousel-item active">
-            <img src="https://via.placeholder.com/1500x600?text=Welcome+to+the+Social+Media+Learning+Hub" class="d-block w-100 carousel-img" alt="First slide" style="object-fit: cover; height: 60vh;">
-            <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 5px;">
-                <h5 class="hero-text" style="color: white;">Welcome to the Social Media Learning Hub!</h5>
-                <p class="hero-text" style="color: white;">Empowering you to share your passions and grow online.</p>
+            <h1 style="position: absolute; top: 13rem; left: 19rem; z-index: 10; color: white; font-size: 8rem;">Boomer's Hub</h1>
+            <img src="{{ url_for('static', filename='img/main.jpg') }}" class="d-block w-100 sm-learning-carousel-img" alt="First slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Welcome to the Social Media Learning Hub!</h5>
+                <p>Empowering you to share your passions and grow online.</p>
             </div>
         </div>
     </div>
 </div>
 
 <!-- About Section -->
-<section class="container" style="text-align: center; margin-bottom: 50px;">
-    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Our Mission</h2>
-    <p style="font-size: 1.2rem;">At the Social Media Learning Hub, we provide you with the tools and knowledge you need to grow your online presence and engage with your audience effectively. Join us as we explore the world of digital media.</p>
+<section class="container sm-learning-about">
+    <div class="sm-about-content">
+        <div class="sm-about-text">
+            <h2>Our Mission</h2>
+            <p>At the Social Media Learning Hub, we provide you with the tools and knowledge you need to grow your online presence and engage with your audience effectively. Join us as we explore the world of digital media.</p>
+        </div>
+        <div class="sm-about-image">
+            <img src="{{ url_for('static', filename='img/mission.png') }}" alt="About Image">
+        </div>
+    </div>
 </section>
-
 {% endblock %}

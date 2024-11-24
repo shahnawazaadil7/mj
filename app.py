@@ -1,11 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 import json
-from flask import Flask, render_template, request, jsonify
-from webquery import WebQuery
 import os
 import pandas as pd
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash
 from models.recommender import recommend_content
+from dataset import chatbot_data
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Required for session management
@@ -13,7 +12,6 @@ app.jinja_env.globals.update(enumerate=enumerate)
 
 # Constants
 DB_FILE = 'users.json'
-
 TODO_DB_FILE = 'todos.json'
 
 # Initialize the To-Do database
@@ -37,13 +35,13 @@ def update_todo_db(username, todos):
     with open(TODO_DB_FILE, 'w') as db:
         json.dump(data, db)
         
-# Initialize the database (JSON file)
+# Initialize the user database (JSON file)
 def init_db():
     if not os.path.exists(DB_FILE):
         with open(DB_FILE, 'w') as db:
             json.dump([], db)  # Create an empty user list
 
-# Read data from the database
+# Read data from the user database
 def read_db():
     with open(DB_FILE, 'r') as db:
         try:
@@ -51,7 +49,7 @@ def read_db():
         except json.JSONDecodeError:
             return []
 
-# Write data to the database
+# Write data to the user database
 def write_db(data):
     with open(DB_FILE, 'w') as db:
         json.dump(data, db)
@@ -77,16 +75,6 @@ def home():
 def tutorials():
     return render_template("tutorials.html")
 
-# Route: Dashboard (requires login)
-@app.route("/dashboard")
-def dashboard():
-    analytics = {
-        "followers": 1200,
-        "engagement_rate": 8.5,
-        "recent_posts": ["How to craft jewelry", "5 tips for better home decor photos"],
-    }
-    return render_template("dashboard.html", analytics=analytics, username=session.get('username'))
-
 # Route: Recommender
 @app.route("/recommender", methods=["GET", "POST"])
 def recommender():
@@ -104,6 +92,7 @@ def recommender():
 
     return render_template("recommender.html")
 
+# Route: To-Do List
 @app.route('/todo', methods=['GET', 'POST'])
 def todo():
     if not session.get('logged_in'):
@@ -124,6 +113,7 @@ def todo():
 
     return render_template('todo.html', todos=todos)
 
+# Route: Update To-Do List
 @app.route('/todo/update', methods=['POST'])
 def update_todo():
     if not session.get('logged_in'):
@@ -141,6 +131,7 @@ def update_todo():
 
     return redirect(url_for('todo'))
 
+# Route: Delete To-Do
 @app.route('/todo/delete', methods=['POST'])
 def delete_todo():
     if not session.get('logged_in'):
@@ -174,8 +165,8 @@ def login():
             session['username'] = username
             flash('Login successful!', 'success')
             
-            # Redirect to the next page if it exists or the dashboard
-            next_url = session.pop('next', url_for('dashboard'))
+            # Redirect to the next page if it exists or the homepage
+            next_url = session.pop('next', url_for('home'))
             return redirect(next_url)
         else:
             flash('Invalid username or password. Please try again.', 'danger')
@@ -202,63 +193,24 @@ def register():
 
     return render_template('register.html')
 
-# Global variable for WebQuery instance
-webquery_instance = None
+# Get response from dataset
+def get_response(user_input):
+    responses = chatbot_data()  # Load the dataset (dictionary)
+    return responses.get(user_input.lower(), "Sorry, I didn't understand that.")
 
-@app.route("/chatbot")
+# Route: Chatbot
+@app.route("/chatbot", methods=["GET", "POST"])
 def chatbot():
-    """Render the chatbot page."""
+    if request.method == "POST":
+        data = request.json
+        user_input = data.get("message", "").strip()  # Get input message
+        response = get_response(user_input)  # Get chatbot response
+        return jsonify({"response": response})  # Return JSON response
     return render_template("chat.html")
 
-@app.route("/set_api_key", methods=["POST"])
-def set_api_key():
-    """Set the OpenAI API key dynamically."""
-    global webquery_instance
-    api_key = request.form.get("api_key")
-    if api_key:
-        try:
-            webquery_instance = WebQuery(api_key)
-            return jsonify({"message": "API key set successfully!"}), 200
-        except Exception as e:
-            return jsonify({"error": f"Failed to set API key: {str(e)}"}), 400
-    return jsonify({"error": "Invalid API key."}), 400
-
-@app.route("/ingest_url", methods=["POST"])
-def ingest_url():
-    """Ingest a specific URL for the WebQuery instance."""
-    global webquery_instance
-    url = request.form.get("url")
-    if not url:
-        return jsonify({"error": "No URL provided."}), 400
-
-    if webquery_instance is None:
-        return jsonify({"error": "WebQuery instance not initialized. Set the API key first."}), 400
-
-    result = webquery_instance.ingest(url)
-    if "successfully" in result.lower():
-        return jsonify({"message": result}), 200
-    return jsonify({"error": result}), 400
-
-@app.route("/ask_question", methods=["POST"])
-def ask_question():
-    """Ask a question to the pre-ingested or dynamically ingested data."""
-    global webquery_instance
-    question = request.form.get("question")
-    if not question:
-        return jsonify({"error": "No question provided."}), 400
-
-    if webquery_instance is None:
-        return jsonify({"error": "WebQuery instance not initialized. Set the API key first."}), 400
-
-    try:
-        answer = webquery_instance.ask(question)
-        return jsonify({"answer": answer}), 200
-    except Exception as e:
-        return jsonify({"error": f"Failed to process question: {str(e)}"}), 400
-
+# Route: Team Page
 @app.route('/team')
 def team():
-    # Render the team page and pass any necessary variables (if required)
     return render_template('team.html')
 
 # Route: Logout
@@ -266,9 +218,10 @@ def team():
 def logout():
     session.clear()
     flash('You have been logged out.', 'info')
-    return redirect(url_for('login'))
+    return redirect(url_for('home'))
 
+# Initialize databases and run the app
 if __name__ == "__main__":
     init_db()  # Initialize user database
     init_todo_db()  # Initialize to-do database
-    app.run(debug=True, use_reloader=False, threaded=False)
+    app.run(debug=True)

@@ -3,16 +3,16 @@
 {% block content %}
 <h1>Your Recommendations</h1>
 
-<div class="recommendations-container">
+<div class="results-wrapper">
     {% if recommendations %}
-        <ul>
+        <ul class="results-list">
             {% for item in recommendations %}
-                <li>{{ item }}</li>
+                <li class="result-item">{{ item }}</li>
             {% endfor %}
         </ul>
     {% else %}
-        <p>No recommendations found.</p>
+        <p class="no-results-message">No recommendations found.</p>
     {% endif %}
-    <a href="/recommender" class="btn">Go Back</a>
+    <a href="/recommender" class="btn-back">Go Back</a>
 </div>
 {% endblock %}

@@ -1,94 +1,83 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Define the image path for team images -->
-{% set image_path = url_for('static', filename='img/team/') %}
-
 <!-- Team Section -->
-<section id="team" class="team section" style="padding: 50px 0; background-color: #f8f9fa;">
+<section id="team" class="team-section">
 
   <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up" style="text-align: center; margin-bottom: 40px;">
-    <h2 style="font-size: 2.5rem; color: #343a40;">Our Team</h2>
-    <p style="font-size: 1.2rem; color: #6c757d;">Meet the talented individuals from our team, all alumni from XYZ College, working together to make an impact.</p>
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Our Team</h2>
+    <p>Meet the talented individuals from our team, students of Lords Institute of Engineeering and Technology, working together to make an impact.</p>
   </div><!-- End Section Title -->
 
   <div class="container">
     <!-- Row for Team Members -->
-    <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+    <div class="team-card-container">
 
       <!-- Team Member 1 -->
-      <div class="col-lg-5 col-md-6" data-aos="fade-up" data-aos-delay="100" style="flex: 1; max-width: 300px;">
-        <div class="card" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; background-color: #fff;">
-          <img src="static/img/pc3.jpg" class="card-img-top" alt="Syed Imaaz Ali" style="height: 250px; object-fit: cover; width: 100%; border-bottom: 5px solid #ff6f61;">
-          <div class="card-body" style="padding: 20px; text-align: center;">
-            <h4 class="card-title" style="font-size: 1rem; font-weight: bold; color: #343a40;">Syed Imaaz Ali</h4>
-            <span class="card-text" style="font-size: 0.8rem; color: #6c757d;">Team Leader</span>
-            <div class="social" style="margin-top: 15px;">
-              <a href="https://www.linkedin.com/in/mohammed-saadullah-160b3122a/" target="_blank" style="text-decoration: none; margin-right: 15px;">
-                <i class="bi bi-linkedin" style="font-size: 1.5rem; color: #0077b5;"></i>
-              </a>
-              <a href="mailto:saadullah@example.com" target="_blank" style="text-decoration: none;">
-                <i class="bi bi-envelope" style="font-size: 1.5rem; color: #ff6f61;"></i>
-              </a>
-            </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+        <img src="static/img/imaz.jpg" alt="Syed Imaaz Ali">
+        <div class="team-card-body">
+          <h4>Syed Imaaz Ali</h4>
+          <span class="card-text">Team Leader</span>
+          <div class="social">
+            <a href="https://www.linkedin.com/in/mohammed-saadullah-160b3122a/" target="_blank">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="mailto:saadullah@example.com" target="_blank">
+              <i class="bi bi-envelope"></i>
+            </a>
           </div>
         </div>
       </div><!-- End Team Member -->
 
       <!-- Team Member 2 -->
-      <div class="col-lg-5 col-md-6" data-aos="fade-up" data-aos-delay="200" style="flex: 1; max-width: 300px;">
-        <div class="card" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; background-color: #fff;">
-          <img src="static/img/shah.jpg" class="card-img-top" alt="Mohd Shahnawaz Aadil" style="height: 250px; object-fit: cover; width: 100%; border-bottom: 5px solid #ff6f61;">
-          <div class="card-body" style="padding: 20px; text-align: center;">
-            <h4 class="card-title" style="font-size: 1rem; font-weight: bold; color: #343a40;">Mohd Shahnawaz Aadil</h4>
-            <span class="card-text" style="font-size: 0.8rem; color: #6c757d;">Team Member</span>
-            <div class="social" style="margin-top: 15px;">
-              <a href="https://www.linkedin.com/in/shahnawazaadil/" target="_blank" style="text-decoration: none; margin-right: 15px;">
-                <i class="bi bi-linkedin" style="font-size: 1.5rem; color: #0077b5;"></i>
-              </a>
-              <a href="mailto:sarah.jhonson@example.com" target="_blank" style="text-decoration: none;">
-                <i class="bi bi-envelope" style="font-size: 1.5rem; color: #ff6f61;"></i>
-              </a>
-            </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+        <img src="static/img/shah.jpg" alt="Mohd Shahnawaz Aadil">
+        <div class="team-card-body">
+          <h4>Mohd Shahnawaz Aadil</h4>
+          <span class="card-text">Team Member</span>
+          <div class="social">
+            <a href="https://www.linkedin.com/in/shahnawazaadil/" target="_blank">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="mailto:sarah.jhonson@example.com" target="_blank">
+              <i class="bi bi-envelope"></i>
+            </a>
           </div>
         </div>
       </div><!-- End Team Member -->
 
       <!-- Team Member 3 -->
-      <div class="col-lg-5 col-md-6" data-aos="fade-up" data-aos-delay="300" style="flex: 1; max-width: 300px;">
-        <div class="card" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; background-color: #fff;">
-          <img src="static/img/team-3.jpg" class="card-img-top" alt="Sumaiyya Fathima Baig" style="height: 250px; object-fit: cover; width: 100%; border-bottom: 5px solid #ff6f61;">
-          <div class="card-body" style="padding: 20px; text-align: center;">
-            <h4 class="card-title" style="font-size: 1rem; font-weight: bold; color: #343a40;">Sumaiyya Fathima Baig</h4>
-            <span class="card-text" style="font-size: 0.8rem; color: #6c757d;">Team Member</span>
-            <div class="social" style="margin-top: 15px;">
-              <a href="https://www.linkedin.com/in/william-anderson/" target="_blank" style="text-decoration: none; margin-right: 15px;">
-                <i class="bi bi-linkedin" style="font-size: 1.5rem; color: #0077b5;"></i>
-              </a>
-              <a href="mailto:william.anderson@example.com" target="_blank" style="text-decoration: none;">
-                <i class="bi bi-envelope" style="font-size: 1.5rem; color: #ff6f61;"></i>
-              </a>
-            </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="static/img/banu.jpg" alt="Sumaiya Fathima Banu">
+        <div class="team-card-body">
+          <h4>Sumaiya Fathima Banu</h4>
+          <span class="card-text">Team Member</span>
+          <div class="social">
+            <a href="https://www.linkedin.com/in/william-anderson/" target="_blank">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="mailto:william.anderson@example.com" target="_blank">
+              <i class="bi bi-envelope"></i>
+            </a>
           </div>
         </div>
       </div><!-- End Team Member -->
 
       <!-- Team Member 4 -->
-      <div class="col-lg-5 col-md-6" data-aos="fade-up" data-aos-delay="400" style="flex: 1; max-width: 300px;">
-        <div class="card" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; background-color: #fff;">
-          <img src="{{ image_path }}team-4.jpg" class="card-img-top" alt="Mohammed Abdul Malik" style="height: 250px; object-fit: cover; width: 100%; border-bottom: 5px solid #ff6f61;">
-          <div class="card-body" style="padding: 20px; text-align: center;">
-            <h4 class="card-title" style="font-size: 1rem; font-weight: bold; color: #343a40;">Mohammed Abdul Malik</h4>
-            <span class="card-text" style="font-size: 0.8rem; color: #6c757d;">Team Member</span>
-            <div class="social" style="margin-top: 15px;">
-              <a href="https://www.linkedin.com/in/amanda-jepson/" target="_blank" style="text-decoration: none; margin-right: 15px;">
-                <i class="bi bi-linkedin" style="font-size: 1.5rem; color: #0077b5;"></i>
-              </a>
-              <a href="mailto:amanda.jepson@example.com" target="_blank" style="text-decoration: none;">
-                <i class="bi bi-envelope" style="font-size: 1.5rem; color: #ff6f61;"></i>
-              </a>
-            </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="400">
+        <img src="static/img/malik.jpg" alt="Mohammed Abdul Malik">
+        <div class="team-card-body">
+          <h4>Mohammed Abdul Malik</h4>
+          <span class="card-text">Team Member</span>
+          <div class="social">
+            <a href="https://www.linkedin.com/in/amanda-jepson/" target="_blank">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="mailto:amanda.jepson@example.com" target="_blank">
+              <i class="bi bi-envelope"></i>
+            </a>
           </div>
         </div>
       </div><!-- End Team Member -->
@@ -96,10 +85,10 @@
     </div><!-- End Row -->
 
     <!-- College Section -->
-    <div style="display: flex; justify-content: center; align-items: center; height: 200px; background-color: lightblue; margin-top: 40px;">
-      <div style="text-align: center;">
-        <h3 style="font-size: 2rem; font-weight: bold; color: #343a40;">We are proud to be alumni of XYZ College.</h3>
-        <p style="font-size: 1.2rem; color: #6c757d;">Building a brighter future, together.</p>
+    <div class="college-section">
+      <div>
+        <h3>We are proud to be students of Lords Institute of Engineeering and Technology.</h3>
+        <p>Building a brighter future, together.</p>
       </div>
     </div><!-- End College Section -->
 

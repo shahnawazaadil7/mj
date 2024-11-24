@@ -1,51 +1,272 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
+/* ============================================================
+   Global Styles
+   ============================================================ */
+   body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     font-size: 16px;
     line-height: 1.6;
     color: #333;
     background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
 }
 
-/* Layout Styles */
-nav {
-    background: #007bff;
+/* ============================================================
+   Navbar Styles
+   ============================================================ */
+   .navbar {
+    background: linear-gradient(90deg, #007bff, #00b4d8);
     color: #fff;
-    padding: 10px 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: sticky; /* Ensures navbar stays at the top */
+    top: 0;
+    z-index: 1000;
 }
 
-nav a {
+.navbar-logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-logo:hover {
+    color: #ffd700;
+}
+
+.navbar-menu {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-menu li {
+    margin: 0 15px;
+}
+
+.navbar a {
     color: #fff;
     text-decoration: none;
-    margin-right: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect for links */
+.navbar a::after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 0;
+    background-color: #ffd700;
+    transition: width 0.3s ease-in-out;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+.navbar a:hover {
+    color: #ffd700;
+}
+
+.navbar a.active {
+    color: #ffd700;
     font-weight: bold;
-    transition: color 0.3s ease;
 }
 
-nav a:hover {
-    color: #ffd700;
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .navbar-menu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-menu li {
+        margin: 10px 0;
+    }
+
+    .navbar-logo {
+        margin-bottom: 15px;
+    }
 }
 
-nav a.active {
-    color: #ffd700;
-    text-decoration: underline;
+/* Navbar Button (Optional) */
+.navbar-btn {
+    background-color: #ffd700;
+    color: #007bff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
 }
 
-.content {
-    max-width: 1200px;
+.navbar-btn:hover {
+    background-color: #fff;
+    color: #007bff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================================
+   Chatbot Styling - Stable Card Layout
+   ============================================================ */
+
+/* Chatbot Container */
+.chatbot-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    position: relative;
+}
+
+/* Chatbot Header */
+.chatbot-container .header {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Chatbox Area */
+.chat-box {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Message Styling */
+.message {
+    max-width: 70%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1rem;
+    line-height: 1.4;
+    display: inline-block;
+    word-wrap: break-word;
+}
+
+.message.user {
+    background-color: #007bff;
+    color: white;
+    align-self: flex-end;
+    border-radius: 20px 20px 0 20px;
+}
+
+.message.bot {
+    background-color: #e9ecef;
+    color: #333;
+    align-self: flex-start;
+    border-radius: 20px 20px 20px 0;
+}
+
+/* Input Area */
+.input-area {
+    display: flex;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+}
+
+/* Input Field */
+.input-area input {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    margin-right: 10px;
+    transition: border-color 0.3s ease;
+}
+
+/* Input Field Focus Effect */
+.input-area input:focus {
+    border-color: #007bff;
+}
+
+/* Send Button */
+.input-area button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+/* Send Button Hover Effect */
+.input-area button:hover {
+    background-color: #0056b3;
+}
+
+/* Scrollbar Styling */
+.chat-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 10px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+}
+
+/* Container Styles */
+.todo-container {
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     background: #fff;
@@ -53,8 +274,15 @@ nav a.active {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Form Styles */
-form {
+/* Heading Styles */
+.todo-heading {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Add Task Form */
+.todo-form {
     margin-top: 20px;
     padding: 20px;
     background: #f8f9fa;
@@ -62,14 +290,7 @@ form {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #007bff;
-}
-
-form input, form select, form button {
+.todo-form input[type="text"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -78,198 +299,568 @@ form input, form select, form button {
     font-size: 14px;
 }
 
-form input:focus, form select:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
-}
-
-form button {
+.todo-form button {
+    width: 100%;
+    padding: 10px;
     background: #007bff;
     color: #fff;
     border: none;
     font-weight: bold;
     cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px #0056b3;
-}
-
-form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px #003d80;
-}
-
-form button:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px #003d80;
-}
-
-/* Flash Messages */
-.flash {
-    padding: 10px;
-    margin-bottom: 20px;
     border-radius: 4px;
-    font-weight: bold;
-    animation: fadeIn 0.5s ease-in-out;
+    transition: background-color 0.3s;
 }
 
-.flash.success {
-    background: #28a745;
-    color: #fff;
-}
-
-.flash.danger {
-    background: #dc3545;
-    color: #fff;
-}
-
-.flash.warning {
-    background: #ffc107;
-    color: #212529;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    color: #fff;
-    background: #007bff;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px #0056b3;
-}
-
-.btn:hover {
+.todo-form button:hover {
     background: #0056b3;
-    transform: translateY(-2px);
-    box-shadow: 0 6px #003d80;
 }
 
-.btn:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px #003d80;
-}
-
-/* Table Styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
+/* To-Do List */
+.todo-list {
+    list-style: none;
+    padding: 0;
     margin-top: 20px;
 }
 
-table th, table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-table th {
-    background: #007bff;
-    color: #fff;
-    font-weight: bold;
-}
-
-table tr:hover {
-    background: #f1f1f1;
-}
-
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
-    color: #007bff;
-    margin-bottom: 10px;
-}
-
-h1 {
-    font-size: 2rem;
-}
-
-h2 {
-    font-size: 1.75rem;
-}
-
-/* Lists */
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-ul li {
+.todo-item {
     padding: 10px;
     border: 1px solid #ddd;
     margin-bottom: 5px;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
 }
 
-ul li:hover {
-    background: #f8f9fa;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 10px 0;
-    margin-top: 20px;
-    background: #007bff;
-    color: #fff;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    nav a {
-        margin: 10px 0;
-    }
-
-    form input, form select, form button {
-        font-size: 16px;
-    }
-}
-
-.card-img-top {
-    border-radius: 10px;
-    object-fit: cover;
-    height: 200px;
-  }
-  
-  .card-body {
-    text-align: center;
-  }
-  
-  .card-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-  
-  .card-text {
-    font-size: 1rem;
-    color: #555;
-  }
-  
-  .social i {
-    font-size: 1.2rem;
+.todo-radio {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
     margin-right: 10px;
+    accent-color: #007bff;
+}
+
+.todo-text {
+    flex-grow: 1;
+    font-size: 14px;
+    color: #333;
+}
+
+.todo-text.completed {
+    text-decoration: line-through;
+}
+
+.todo-actions {
+    display: flex;
+    align-items: center;
+}
+
+.btn-delete {
+    padding: 5px 10px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-delete:hover {
+    background: #a71d2a;
+}
+/* ============================================================
+Content Recommender Styles
+============================================================ */
+
+/* Recommender Container */
+.content-recommender {
+ max-width: 600px;
+ margin: 20px auto;
+ padding: 20px;
+ background-color: #f9f9f9;
+ border-radius: 8px;
+ box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Title */
+.content-recommender h1 {
+ font-size: 1.8rem;
+ text-align: center;
+ color: #007bff;
+ margin-bottom: 20px;
+}
+
+/* Form Group */
+.content-recommender .form-group {
+ margin-bottom: 15px;
+ display: flex;
+ flex-direction: column;
+}
+
+/* Form Labels */
+.content-recommender .form-group label {
+ font-size: 1rem;
+ color: #333;
+ margin-bottom: 5px;
+ font-weight: bold;
+}
+
+/* Input Fields */
+.content-recommender .form-group input,
+.content-recommender .form-group select {
+ padding: 10px;
+ font-size: 1rem;
+ border: 1px solid #ddd;
+ border-radius: 5px;
+ outline: none;
+ box-sizing: border-box;
+ transition: border-color 0.3s ease;
+ width: 100%;
+}
+
+/* Focus Effect on Inputs */
+.content-recommender .form-group input:focus,
+.content-recommender .form-group select:focus {
+ border-color: #007bff;
+}
+
+/* Submit Button */
+.content-recommender .btn {
+ display: block;
+ width: 100%;
+ padding: 10px;
+ font-size: 1rem;
+ color: #fff;
+ background-color: #007bff;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover and Active States for Button */
+.content-recommender .btn:hover {
+ background-color: #0056b3;
+ transform: translateY(-2px);
+}
+
+.content-recommender .btn:active {
+ background-color: #004494;
+ transform: translateY(2px);
+}
+
+/* ============================================================
+   Enhanced Results Page Styles (Centered)
+   ============================================================ */
+
+/* Background Styling */
+.results-background {
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    min-height: 100vh; /* Ensure it takes full viewport height */
+    display: flex;
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+    padding: 20px;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Results Wrapper */
+.results-wrapper {
+    max-width: 800px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    margin: 0 auto; /* This ensures the content is centered horizontally */
+}
+
+/* Title Styling */
+.results-wrapper h1 {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Results List */
+.results-list {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+}
+
+.results-list .result-item {
+    background: #f7f9fc;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: #333333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    text-align: left;
+}
+
+/* Hover Effect on Items */
+.results-list .result-item:hover {
+    background: #007bff;
+    color: #ffffff;
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Back Button */
+.btn-back {
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn-back:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-back:active {
+    transform: scale(0.98);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* No Results Message */
+.no-results-message {
+    font-size: 1.4rem;
+    color: #666666;
+    margin: 20px 0;
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* Keyframes for Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Section Styling */
+.team-section {
+    padding: 50px 0;
+    background-color: #f8f9fa;
+}
+
+.team-section .section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.team-section .section-title h2 {
+    font-size: 2.5rem;
+    color: #343a40;
+}
+
+.team-section .section-title p {
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+/* Team Card Styling */
+.team-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.team-card {
+    flex: 1;
+    max-width: 300px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.team-card img {
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+    border-bottom: 5px solid #ff6f61;
+}
+
+.team-card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.team-card-body h4 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.team-card-body .card-text {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.team-card-body .social a {
+    text-decoration: none;
+    margin-right: 15px;
+    font-size: 1.5rem;
+}
+
+.team-card-body .social a .bi-linkedin {
+    color: #0077b5;
+}
+
+.team-card-body .social a .bi-envelope {
+    color: #ff6f61;
+}
+
+/* College Section Styling */
+.college-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    background-color: lightblue;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.college-section h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.college-section p {
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+/* Background styling for the page */
+.page-background {
+    background-color: #f4f4f9;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Container for the login/register form */
+.login-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px 40px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Form header */
+.login-container h1 {
+    font-size: 2rem;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+/* Flash message styling */
+.flash {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.flash.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flash.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Input group styling */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: #555555;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit button styling */
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Register link styling */
+.register-link {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #555555;
+}
+
+.register-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Carousel Section */
+.sm-learning-carousel {
+    margin-bottom: 50px;
+    position: relative;
   }
   
-  .social a:hover {
-    color: #ff6f61;
+  .sm-learning-carousel .sm-learning-carousel-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100vh;
+    filter: brightness(0.8);
+}
+  
+  .sm-learning-carousel .carousel-caption {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    max-width: 60%;
+    margin: 0 auto;
+    animation: fadeIn 2s ease-in-out;
   }
+  
+  .sm-learning-carousel .carousel-caption h5 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  
+  .sm-learning-carousel .carousel-caption p {
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+  
+  /* Keyframes for Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* About Section */
+  .sm-learning-about {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 40px 20px;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .sm-learning-about h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .sm-learning-about p {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  
+  /* Button for Call to Action (optional) */
+  .sm-learning-about .cta-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background-color: #ff6f61;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .sm-learning-about .cta-btn:hover {
+    background-color: #ff3b2f;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  

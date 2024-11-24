@@ -9,61 +9,85 @@ Helping you grow your business and connect with the world.
 {% endblock %}
 
 {% block content %}
-<div style="text-align: center; margin: 20px 0;">
-    <button onclick="showContent('youtube')" style="background: #28a745; color: white; border: none; padding: 15px 20px; font-size: 1rem; cursor: pointer; border-radius: 5px; margin: 5px; transition: background 0.3s;">Learn YouTube</button>
-    <button onclick="showContent('instagram')" style="background: #28a745; color: white; border: none; padding: 15px 20px; font-size: 1rem; cursor: pointer; border-radius: 5px; margin: 5px; transition: background 0.3s;">Learn Instagram</button>
-    <button onclick="showContent('facebook')" style="background: #28a745; color: white; border: none; padding: 15px 20px; font-size: 1rem; cursor: pointer; border-radius: 5px; margin: 5px; transition: background 0.3s;">Learn Facebook</button>
+
+<style>
+    .platform-button{
+        background-color: rgb(22, 121, 243);
+        width: 6rem;
+        height: 3rem;
+        color: white;
+        border: none;
+        margin-top: 10px;
+        /* margin-left: 250px; */
+        border-radius: 1rem;
+    }
+
+    .button-container{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .content-title{
+        font-size: 4rem;
+
+    }
+
+    .tip-link{
+        font-size: 1.5rem;
+    }
+
+    .main{
+        text-align: center;
+    }
+</style>
+
+<div class="button-container">
+    <button onclick="showContent('youtube')" class="platform-button">Learn YouTube</button>
+    <button onclick="showContent('instagram')" class="platform-button">Learn Instagram</button>
+    <button onclick="showContent('facebook')" class="platform-button">Learn Facebook</button>
 </div>
 
+<div class="main">
+
+
 <!-- YouTube Content -->
-<div id="youtube" class="content" style="display: none; font-family: Arial, sans-serif; margin-top: 20px;">
-    <h2 style="color: #ff6f61; text-align: center;">YouTube Tips</h2>
-    <div class="tips" style="margin: 20px; font-size: 1rem; line-height: 1.6;">
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://www.youtube.com/embed/bVPjcLL9jGM?si=KnZKKiCFzgDmaemB')" style="color: #007bff; text-decoration: none;">1. Personal Account</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://www.youtube.com/embed/XAY0I3HltaU?si=fpi9F6bchny8knVT')" style="color: #007bff; text-decoration: none;">2. Brand Account</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://www.youtube.com/embed/l1_RpqffRhc?si=Z4x5PcdlHjwxr8wQ')" style="color: #007bff; text-decoration: none;">3. How to Upload a Video</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/zsO1Oayp7kg?si=3CgcGoWZq6KgIwKY')" style="color: #007bff; text-decoration: none;">4. Tips to Manage Your YouTube Channel</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/B4ShvAsh-38?si=Cmlgq3nRErIYki9e')" style="color: #007bff; text-decoration: none;">5. Promote Your YouTube Channel</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/Lk_4GUymeOI?si=1b5F4FY3OwZW9zy2')" style="color: #007bff; text-decoration: none;">6. How to Start a YouTube Channel for Beginners</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/64nXeN96FxU?si=gdVvpv216pOKXDzf')" style="color: #007bff; text-decoration: none;">7. How to Edit YouTube Videos for Free</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/K8dPH1F-S7Q?si=nv-Iho_du_qIwcnZ')" style="color: #007bff; text-decoration: none;">8. Crafting Content Ideas for YouTube</a></p>
+<div id="youtube" class="content youtube-content">
+    <h2 class="content-title">YouTube Tips</h2>
+    <div class="tips">
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/bVPjcLL9jGM?si=KnZKKiCFzgDmaemB')" class="tip-link">1. Personal Account</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/XAY0I3HltaU?si=fpi9F6bchny8knVT')" class="tip-link">2. Brand Account</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/l1_RpqffRhc?si=Z4x5PcdlHjwxr8wQ')" class="tip-link">3. How to Upload a Video</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/zsO1Oayp7kg?si=3CgcGoWZq6KgIwKY')" class="tip-link">4. Tips to Manage Your YouTube Channel</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/B4ShvAsh-38?si=Cmlgq3nRErIYki9e')" class="tip-link">5. Promote Your YouTube Channel</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/Lk_4GUymeOI?si=1b5F4FY3OwZW9zy2')" class="tip-link">6. How to Start a YouTube Channel for Beginners</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/64nXeN96FxU?si=gdVvpv216pOKXDzf')" class="tip-link">7. How to Edit YouTube Videos for Free</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/K8dPH1F-S7Q?si=nv-Iho_du_qIwcnZ')" class="tip-link">8. Crafting Content Ideas for YouTube</a></p>
     </div>
-    <div id="video-container" style="display: none; margin-top: 20px; text-align: center;">
+    <div id="video-container" class="video-container">
         <iframe id="youtube-video" width="560" height="315" src="https://www.youtube.com/embed/kJlE1IT8QR0" 
             title="YouTube video player" frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
         </iframe>
     </div>
-    <p style="text-align: center; margin-top: 20px;"><strong>Note:</strong> Click on any topic above to watch the corresponding tutorial video.</p>
+    <p class="note"><strong>Note:</strong> Click on any topic above to watch the corresponding tutorial video.</p>
 </div>
-
 <!-- Instagram Content -->
-<div id="instagram" class="content" style="display: none; font-family: Arial, sans-serif; margin-top: 20px;">
-    <h2 style="color: #ff6f61; text-align: center;">Instagram Tips</h2>
-    <div class="tips" style="margin: 20px; font-size: 1rem; line-height: 1.6;">
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/DEAZkFpVF_U?si=GhpvKA-PvB_W_BGC')"
-            style="color: #007bff; text-decoration: none;">1. How to Create an Instagram Account</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/S3Aix5jPDb0?si=UkFb8zW2sWe60n5z')"
-            style="color: #007bff; text-decoration: none;">2. Optimizing Your Instagram Bio</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/R1lmX3Ypa4k?si=lR_PCDe9yQSyaExu')"
-            style="color: #007bff; text-decoration: none;">3. Best Practices for Using Hashtags</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/6BLBBawLj7E?si=tagmKaOMxgNfeovg')"
-            style="color: #007bff; text-decoration: none;">4. How to Use Instagram Stories Effectively</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/B9w7s4NQ570?si=oE3Bh32mCZJn41lt')"
-            style="color: #007bff; text-decoration: none;">5. How to Increase Engagement on Instagram</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/Rffh2ZWEdgU?si=jSqK9V3cprCeSEbc')"
-            style="color: #007bff; text-decoration: none;">6. Crafting the Perfect Instagram Feed</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/99uHruLTIgU?si=hcvuV9qzv-NAXiLE')"
-            style="color: #007bff; text-decoration: none;">7. Running Instagram Ads to Grow Your Audience</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/ND73xAQkJeU?si=5xT9j8KPNQMblcUH')"
-            style="color: #007bff; text-decoration: none;">8. Understanding Instagram Analytics</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/43pg1XX9YnU?si=Pa-AJoGTor1B2DL3')"
-            style="color: #007bff; text-decoration: none;">9. How to Plan Your Instagram Content</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/gc37dhW2-ds?si=2RztMX1yyEc1apQR')"
-            style="color: #007bff; text-decoration: none;">10. Collaborating with Influencers on Instagram</a></p>
+<div id="instagram" class="content instagram-content">
+    <h2 class="content-title">Instagram Tips</h2>
+    <div class="tips">
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/DEAZkFpVF_U?si=GhpvKA-PvB_W_BGC')" class="tip-link">1. How to Create an Instagram Account</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/S3Aix5jPDb0?si=UkFb8zW2sWe60n5z')" class="tip-link">2. Optimizing Your Instagram Bio</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/R1lmX3Ypa4k?si=lR_PCDe9yQSyaExu')" class="tip-link">3. Best Practices for Using Hashtags</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/6BLBBawLj7E?si=tagmKaOMxgNfeovg')" class="tip-link">4. How to Use Instagram Stories Effectively</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/B9w7s4NQ570?si=oE3Bh32mCZJn41lt')" class="tip-link">5. How to Increase Engagement on Instagram</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/Rffh2ZWEdgU?si=jSqK9V3cprCeSEbc')" class="tip-link">6. Crafting the Perfect Instagram Feed</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/99uHruLTIgU?si=hcvuV9qzv-NAXiLE')" class="tip-link">7. Running Instagram Ads to Grow Your Audience</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/ND73xAQkJeU?si=5xT9j8KPNQMblcUH')" class="tip-link">8. Understanding Instagram Analytics</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/43pg1XX9YnU?si=Pa-AJoGTor1B2DL3')" class="tip-link">9. How to Plan Your Instagram Content</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/gc37dhW2-ds?si=2RztMX1yyEc1apQR')" class="tip-link">10. Collaborating with Influencers on Instagram</a></p>
     </div>
-    <div id="video-container" style="display: none; margin-top: 20px; text-align: center;">
+    <div id="video-container" class="video-container">
         <iframe id="youtube-video" width="560" height="315" 
             src="https://www.youtube.com/embed/exampleInstagramVideo" 
             title="Instagram tutorial video" frameborder="0" 
@@ -71,35 +95,25 @@ Helping you grow your business and connect with the world.
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
         </iframe>
     </div>
-    <p style="text-align: center; margin-top: 20px;"><strong>Note:</strong> Click on any topic above to watch the corresponding tutorial video.</p>
+    <p class="note"><strong>Note:</strong> Click on any topic above to watch the corresponding tutorial video.</p>
 </div>
 
 <!-- Facebook Content -->
-<div id="facebook" class="content" style="display: none; font-family: Arial, sans-serif; margin-top: 20px;">
-    <h2 style="color: #ff6f61; text-align: center;">Facebook Tips</h2>
-    <div class="tips" style="margin: 20px; font-size: 1rem; line-height: 1.6;">
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/-BF7-d0WaAA?si=hx4CL8vfnu3oev-d')"
-            style="color: #007bff; text-decoration: none;">1. How to Create a Facebook Page</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/uKWcacNOMVs?si=G_zlxUH-zVVtrMhP')"
-            style="color: #007bff; text-decoration: none;">2. How to Set Up a Facebook Group</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/zT0Znvvbcxk?si=dQvnibsUBTy2A941')"
-            style="color: #007bff; text-decoration: none;">3. How to Post Engaging Content on Facebook</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/kh5FxNFNbdI?si=aJG4DCW9NAkvr84U')"
-            style="color: #007bff; text-decoration: none;">4. Running Facebook Ads to Boost Your Reach</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/zYRw7saqhcQ?si=CoyoU8LGGOiQZlY5')"
-            style="color: #007bff; text-decoration: none;">5. How to Use Facebook Live for Engagement</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/2VUgpNlF8ec?si=s_WoRixuP-UJvJZX')"
-            style="color: #007bff; text-decoration: none;">6. Using Facebook Insights to Improve Your Page</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/khBHWw5hDJg?si=fkq2Ob8wIo1CgPeT')"
-            style="color: #007bff; text-decoration: none;">7. How to Create and Promote Facebook Events</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/JLyJcOKk5MI?si=PN32JMo62sEbsGLS')"
-            style="color: #007bff; text-decoration: none;">8. Using Facebook Messenger for Customer Support</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/H6iuMoHtEzs?si=1hMwQO1bM4MjYJFV')"
-            style="color: #007bff; text-decoration: none;">9. How to Optimize Your Facebook Page for SEO</a></p>
-        <p style="margin: 10px 0;"><a href="#" onclick="showVideo('https://youtu.be/UpdUHFkh22o?si=APe_UVgDJEaJrAYf')"
-            style="color: #007bff; text-decoration: none;">10. How to Build a Strong Brand on Facebook</a></p>
+<div id="facebook" class="content facebook-content">
+    <h2 class="content-title">Facebook Tips</h2>
+    <div class="tips">
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/-BF7-d0WaAA?si=hx4CL8vfnu3oev-d')" class="tip-link">1. How to Create a Facebook Page</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/uKWcacNOMVs?si=G_zlxUH-zVVtrMhP')" class="tip-link">2. How to Set Up a Facebook Group</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/zT0Znvvbcxk?si=dQvnibsUBTy2A941')" class="tip-link">3. How to Post Engaging Content on Facebook</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/kh5FxNFNbdI?si=aJG4DCW9NAkvr84U')" class="tip-link">4. Running Facebook Ads to Boost Your Reach</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/zYRw7saqhcQ?si=CoyoU8LGGOiQZlY5')" class="tip-link">5. How to Use Facebook Live for Engagement</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/2VUgpNlF8ec?si=s_WoRixuP-UJvJZX')" class="tip-link">6. Using Facebook Insights to Improve Your Page</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/khBHWw5hDJg?si=fkq2Ob8wIo1CgPeT')" class="tip-link">7. How to Create and Promote Facebook Events</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/JLyJcOKk5MI?si=PN32JMo62sEbsGLS')" class="tip-link">8. Using Facebook Messenger for Customer Support</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/H7m3wKwckFw?si=H6Vs5ftEXemHTIl1')" class="tip-link">9. Building Your Brand Using Facebook</a></p>
+        <p><a href="#" onclick="showVideo('https://www.youtube.com/embed/QmLNV7beZwo?si=Jmnluw1iInOH3Km2')" class="tip-link">10. How to Drive Traffic to Your Website Using Facebook</a></p>
     </div>
-    <div id="video-container" style="display: none; margin-top: 20px; text-align: center;">
+    <div id="video-container" class="video-container">
         <iframe id="youtube-video" width="560" height="315" 
             src="https://www.youtube.com/embed/exampleFacebookVideo" 
             title="Facebook tutorial video" frameborder="0" 
@@ -107,26 +121,27 @@ Helping you grow your business and connect with the world.
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
         </iframe>
     </div>
-    <p style="text-align: center; margin-top: 20px;"><strong>Note:</strong> Click on any topic above to watch the corresponding tutorial video.</p>
+    <p class="note"><strong>Note:</strong> Click on any topic above to watch the corresponding tutorial video.</p>
 </div>
 
+<div id="video-container" class="video-container">
+        <iframe id="youtube-video" width="560" height="315" 
+            src="https://www.youtube.com/embed/exampleFacebookVideo" 
+            title="Facebook tutorial video" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+    </div>
+    <p class="note"><strong>Note:</strong> Click on any topic above to watch the corresponding tutorial video.</p>
+</div>
+</div>
 
 <script>
-    function showContent(platform) {
-        // Hide all content first
-        document.getElementById('youtube').style.display = 'none';
-        document.getElementById('instagram').style.display = 'none';
-        document.getElementById('facebook').style.display = 'none';
-        
-        // Show the selected content
-        document.getElementById(platform).style.display = 'block';
-    }
-
-    function showVideo(videoUrl) {
-        // Show the video container and set the iframe source
-        var iframe = document.getElementById('youtube-video');
-        iframe.src = videoUrl;
-        document.getElementById('video-container').style.display = 'block';
+    // JavaScript function to dynamically update the iframe source
+    function showVideo(url) {
+        const iframe = document.getElementById('youtube-video');
+        iframe.src = url; // Set the new video URL
     }
 </script>
+
 {% endblock %}
